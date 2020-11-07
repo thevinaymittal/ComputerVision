@@ -23,7 +23,7 @@ def get_caps_and_pickles(video_files, detection_files):
     detections = []
     for video_file, detection_file in zip(video_files, detection_files):
         caps.append(cv2.VideoCapture(video_file))
-        detections.append(np.load(detection_file))
+        detections.append(np.load(detection_file, allow_pickle= True))
     return caps, detections, len(detections[0])
 
 def get_frames_and_boxes(caps, detections, index, show=True):
@@ -192,7 +192,7 @@ def demo(save=True, use_cluster=True):
         cwd = os.getcwd()
 
         save_dir = os.path.join(cwd, 'result', now_str)
-        os.mkdir(save_dir)
+        os.makedirsqqqqqqqqqqqqq(save_dir, exist_ok = True)
         video_names = [os.path.join(save_dir,'c_'+str(i)+'.avi') for i in range(len(caps))]
         outers = [cv2.VideoWriter(video_names[i], fourcc, 30.0, (360, 288)) for i in range(len(caps))]
     box_to_vect, sess = init_box_to_vect_net(model_file)
